@@ -5,40 +5,40 @@ import { useSelector } from 'react-redux';
 import { addTodo, deleteTodo, getTodos, updateTodos } from './redux/action';
 import { useDispatch } from 'react-redux';
 import { store } from './redux/store';
+import { UpdateTodo } from './redux/actionTypes';
 function App() {
 
-  const[tod,setTod]=useState("")
-  const dispatch=useDispatch()
-  const todo=useSelector((store)=>{
-   
-    return store.todos
-  })
-  
-useEffect(()=>{
+  const[tod,setTod]=useState("") 
+    const disPatch=useDispatch()
+const todos=useSelector((store)=>store.todos)
+console.log(todos)
 
-  dispatch(getTodos())
-},[])
+useEffect(()=>{
+  disPatch(getTodos())
+},[disPatch])
 
   return (
     <div className="App">
       <input onChange={(e)=>setTod(e.target.value)}/>
-      <button onClick={()=>{
-        dispatch(addTodo(tod))
-      }}>Add</button>
+      <button onClick={()=>disPatch(addTodo(tod))}>Add</button>
 
 
 
 
-
-      {
-        todo.map((el)=>{
-         return <div key={el.id}>
-          <h3 >{el.value} "===" {el.isCompleted?"Completed":"Not Completed"}</h3>
-          <button onClick={()=>dispatch(deleteTodo(el.id))}>DeleteTodo</button>
-          <button onClick={()=>dispatch(updateTodos(el.id,{isCompleted:!el.isCompleted}))}>UpdateTodo</button>
-          </div>
-        })
-      }
+<div>
+  {
+    todos.map((el)=>{
+      return <div key={el.id}> <h1 >{el.value} == {el.isCompleted?"Completed":"not Completed"}</h1>
+      <button onClick={()=>disPatch(deleteTodo(el.id))}>Delete</button>
+      <button onClick={()=>disPatch(updateTodos(el.id,{
+        isCompleted:!el.isCompleted
+      }))}>UpdateTodo</button>
+      </div>
+     
+    })
+  }
+</div>
+      
     </div>
   );
 }

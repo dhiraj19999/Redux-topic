@@ -1,25 +1,28 @@
 
 import { AddTodo, DeleteTodo, UpdateTodo,GetTodo} from "./actionTypes";
 
-let initialState={
-todos:[]
+let initialState = {
+
+    todos:[]
+
 }
 
 
 export const reducer = (state = initialState, {type, payload }) => {
-switch (type) {
+
+    switch (type) {
 
     case AddTodo:{
         return{
         ...state,
-        todos:[ ...state.todos, payload],
+        todos:[...state.todos,payload],
         }
 
     }
     case GetTodo:{
         return{
         ...state,
-        todos:[ ...state.todos, payload],
+        todos:payload,
         }
 
     }
@@ -33,19 +36,17 @@ switch (type) {
     }
 
     case  UpdateTodo:{
-        const updateTodo=state.todos.map((todo)=>{
-             if(todo===payload.id){
-            return{
-                ...todo,
-                ...payload.changes
-            }
-            }
-           return todo
-           
-        })
-        return {
+        return{
             ...state,
-            todos:updateTodo
+            todos:state.todos.map((todo)=>{
+                if(todo.id===payload.id){
+                    return{
+                        ...todo,
+                        ...payload.changes
+                    }
+                }
+                return todo
+            })
         }
     }
 

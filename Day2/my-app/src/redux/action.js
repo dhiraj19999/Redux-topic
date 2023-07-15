@@ -4,12 +4,22 @@ import { GetTodo,DeleteTodo,AddTodo,UpdateTodo } from "./actionTypes";
 
 
 
-export const getTodos = () => ({
+export const getTodos=()=>{
+
+return {
+
     type:GetTodo,
     payload:[
-    { id: 1, value: "Item 1", isCompleted: true },
-    { id: 2, value: "Item 2", isCompleted: false }]
-    })
+        {
+            id:1,value:"item1",isCompleted:true,
+        },
+        {
+            id:2,value:"item2",isCompleted:false,
+        }
+    ]
+}
+
+}
   
   
     export const addTodo = (value) => ({
@@ -20,9 +30,11 @@ export const getTodos = () => ({
     isCompleted: false,}
    
     })
+   
     export const deleteTodo = (id) => ({ type:DeleteTodo, payload: id});
 
 
+   
     export const updateTodos = (id, changes) => ({
         type: UpdateTodo,
         payload: {
