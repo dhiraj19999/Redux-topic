@@ -14,6 +14,7 @@ export const Inc=()=>{
  store.dispatch({type:INC})
   console.log(store.getState())
 }
+
 export const AddTodo=(name)=>{
     store.dispatch({type:ADD_Todo,payload:name})
     console.log(store.getState())
