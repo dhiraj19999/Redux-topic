@@ -42,7 +42,8 @@ export const reducer = (state = initialState, {type, payload }) => {
                 if(todo.id===payload.id){
                     return{
                         ...todo,
-                        ...payload.changes
+                        //...payload.changes
+                        value:payload.changes
                     }
                 }
                 return todo
